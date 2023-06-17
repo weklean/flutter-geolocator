@@ -34,7 +34,7 @@ public class BackgroundNotification {
         this.notificationId = notificationId;
         this.channelId = channelId;
         builder = new NotificationCompat.Builder(context, channelId)
-            .setPriority(NotificationCompat.PRIORITY_HIGH);
+            .setPriority(NotificationCompat.PRIORITY_MAX);
         updateNotification(options, false);
     }
 
@@ -90,7 +90,7 @@ public class BackgroundNotification {
             .setOngoing(true)
             .setSilent(true)
             .setColor(options.getIconColor())
-            .setPriority(NotificationCompat.PRIORITY_HIGH);
+            .setPriority(NotificationCompat.PRIORITY_MAX);
 
 
         if (notify) {
