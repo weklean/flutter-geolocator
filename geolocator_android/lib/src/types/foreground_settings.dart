@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 /// Uniquely identifies an Android resource.
 class AndroidResource {
   /// The name of the desired resource.
@@ -47,6 +49,8 @@ class ForegroundNotificationConfig {
   /// library.
   final bool enableWakeLock;
 
+  final Color? iconColor;
+
   /// Creates an Android specific configuration for the [FlutterBackground] plugin.
   ///
   /// [notificationTitle] is the title used for the foreground service notification.
@@ -64,6 +68,7 @@ class ForegroundNotificationConfig {
         const AndroidResource(name: 'ic_launcher', defType: 'mipmap'),
     this.enableWifiLock = false,
     this.enableWakeLock = false,
+    this.iconColor
   });
 
   /// Returns a JSON representation of this class.
@@ -74,6 +79,7 @@ class ForegroundNotificationConfig {
       'notificationIcon': notificationIcon.toJson(),
       'enableWifiLock': enableWifiLock,
       'enableWakeLock': enableWakeLock,
+      'iconColor': iconColor?.toString()
     };
   }
 }
