@@ -30,14 +30,14 @@ public class ForegroundNotificationOptions {
     final String notificationText = (String) arguments.get("notificationText");
     final Boolean enableWifiLock = (Boolean) arguments.get("enableWifiLock");
     final Boolean enableWakeLock = (Boolean) arguments.get("enableWakeLock");
-    final @Nullable Integer iconColor = (Integer) arguments.get("iconColor");
+    final @Nullable Long iconColorLong = (Long) arguments.get("iconColor");
     return new ForegroundNotificationOptions(
         notificationTitle,
         notificationText,
         notificationIcon,
         enableWifiLock,
         enableWakeLock,
-        iconColor
+        iconColorLong == null ? null : iconColorLong.intValue()
     );
   }
 
