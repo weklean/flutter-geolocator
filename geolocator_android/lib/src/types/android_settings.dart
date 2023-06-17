@@ -17,6 +17,7 @@ class AndroidSettings extends LocationSettings {
     Duration? timeLimit,
     this.foregroundNotificationConfig,
     this.useMSLAltitude = false,
+    this.iconColor
   }) : super(
             accuracy: accuracy,
             distanceFilter: distanceFilter,
@@ -74,6 +75,8 @@ class AndroidSettings extends LocationSettings {
   /// Defaults to false
   final bool useMSLAltitude;
 
+  final Color? iconColor;
+
   @override
   Map<String, dynamic> toJson() {
     return super.toJson()
@@ -82,6 +85,7 @@ class AndroidSettings extends LocationSettings {
         'timeInterval': intervalDuration?.inMilliseconds,
         'foregroundNotificationConfig': foregroundNotificationConfig?.toJson(),
         'useMSLAltitude': useMSLAltitude,
+        'iconColor': iconColor?.toString() ?? null
       });
   }
 }

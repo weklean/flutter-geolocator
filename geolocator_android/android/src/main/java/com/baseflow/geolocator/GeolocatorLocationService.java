@@ -24,8 +24,6 @@ import com.baseflow.geolocator.location.LocationClient;
 import com.baseflow.geolocator.location.LocationMapper;
 import com.baseflow.geolocator.location.LocationOptions;
 
-import io.flutter.plugin.common.EventChannel;
-
 public class GeolocatorLocationService extends Service {
   private static final String TAG = "FlutterGeolocator";
   private static final int ONGOING_NOTIFICATION_ID = 75415;
@@ -35,7 +33,6 @@ public class GeolocatorLocationService extends Service {
   private final LocalBinder binder = new LocalBinder(this);
   // Service is foreground
   private boolean isForeground = false;
-  private int connectedEngines = 0;
   private int listenerCount = 0;
   @Nullable private Activity activity = null;
   @Nullable private GeolocationManager geolocationManager = null;
@@ -91,18 +88,6 @@ public class GeolocatorLocationService extends Service {
     return true;
   }
 
-  public void flutterEngineConnected() {
-
-    connectedEngines++;
-    Log.d(TAG, "Flutter engine connected. Connected engine count " + connectedEngines);
-  }
-
-  public void flutterEngineDisconnected() {
-
-    connectedEngines--;
-    Log.d(TAG, "Flutter engine disconnected. Connected engine count " + connectedEngines);
-  }
-
   public void startLocationService(
       boolean forceLocationManager,
       LocationOptions locationOptions,
@@ -151,7 +136,6 @@ public class GeolocatorLocationService extends Service {
     obtainWakeLocks(options);
   }
 
-  @SuppressWarnings("deprecation")
   public void disableBackgroundMode() {
     if (isForeground) {
       Log.d(TAG, "Stop service in foreground.");
@@ -211,7 +195,7 @@ public class GeolocatorLocationService extends Service {
     }
   }
 
-  class LocalBinder extends Binder {
+  static class LocalBinder extends Binder {
     private final GeolocatorLocationService locationService;
 
     LocalBinder(GeolocatorLocationService locationService) {
