@@ -16,9 +16,7 @@ public class ForegroundNotificationOptions {
     private final String notificationText;
     @NonNull
     private final AndroidIconResource notificationIcon;
-    @NonNull
     private final boolean enableWifiLock;
-    @NonNull
     private final boolean enableWakeLock;
     private final String iconColor;
 
@@ -32,7 +30,7 @@ public class ForegroundNotificationOptions {
     final String notificationText = (String) arguments.get("notificationText");
     final Boolean enableWifiLock = (Boolean) arguments.get("enableWifiLock");
     final Boolean enableWakeLock = (Boolean) arguments.get("enableWakeLock");
-    final String iconColor = (String) arguments.get("iconColor");
+    final @Nullable String iconColor = (String) arguments.get("iconColor");
     return new ForegroundNotificationOptions(
             notificationTitle,
             notificationText,
@@ -43,7 +41,14 @@ public class ForegroundNotificationOptions {
     );
   }
 
-    private ForegroundNotificationOptions(String notificationTitle, String notificationText, AndroidIconResource notificationIcon, boolean enableWifiLock, boolean enableWakeLock, String iconColor) {
+    private ForegroundNotificationOptions(
+        @NonNull  String notificationTitle,
+        @NonNull String notificationText,
+        @NonNull AndroidIconResource notificationIcon,
+        boolean enableWifiLock,
+        boolean enableWakeLock,
+        @Nullable String iconColor
+    ) {
         this.notificationTitle = notificationTitle;
         this.notificationText = notificationText;
         this.notificationIcon = notificationIcon;
@@ -52,14 +57,17 @@ public class ForegroundNotificationOptions {
         this.iconColor = iconColor;
     }
 
-    public String getNotificationTitle() {
+    @NonNull
+    public  String getNotificationTitle() {
         return notificationTitle;
     }
 
-    public String getNotificationText() {
+    @NonNull
+    public  String getNotificationText() {
         return notificationText;
     }
 
+    @NonNull
     public AndroidIconResource getNotificationIcon() {
         return notificationIcon;
     }
@@ -72,5 +80,11 @@ public class ForegroundNotificationOptions {
         return enableWakeLock;
     }
 
-    public int getIconColor() { return Color.parseColor(iconColor); }
+    @Nullable
+    public Integer getIconColor() {
+        if (iconColor == null) {
+            return null;
+        }
+        return Color.parseColor(iconColor);
+    }
 }

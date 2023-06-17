@@ -89,7 +89,7 @@ public class BackgroundNotification {
                 .setContentIntent(buildBringToFrontIntent())
                 .setOngoing(true)
                 .setSilent(true)
-                .setColor(options.getIconColor());
+                .setColor(options.getIconColor() != null ? options.getIconColor() : 0);
 
 
         if (notify) {
