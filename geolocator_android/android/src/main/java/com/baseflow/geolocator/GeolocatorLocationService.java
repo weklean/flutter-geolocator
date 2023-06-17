@@ -35,6 +35,7 @@ public class GeolocatorLocationService extends Service {
   private final LocalBinder binder = new LocalBinder(this);
   // Service is foreground
   private boolean isForeground = false;
+  private int connectedEngines = 0;
   private int listenerCount = 0;
   @Nullable private Activity activity = null;
   @Nullable private GeolocationManager geolocationManager = null;
@@ -87,7 +88,16 @@ public class GeolocatorLocationService extends Service {
     if(cancellationRequested) {
        return listenerCount == 1;
     }
-    return true;
+    return connectedEngines == 0;
+  }
+  public void flutterEngineConnected() {
+    connectedEngines++;
+    Log.d(TAG, "Flutter engine connected. Connected engine count " + connectedEngines);
+  }
+
+  public void flutterEngineDisconnected() {
+    connectedEngines--;
+    Log.d(TAG, "Flutter engine disconnected. Connected engine count " + connectedEngines);
   }
 
   public void startLocationService(
