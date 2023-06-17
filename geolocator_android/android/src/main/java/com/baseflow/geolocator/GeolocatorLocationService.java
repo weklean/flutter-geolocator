@@ -24,6 +24,8 @@ import com.baseflow.geolocator.location.LocationClient;
 import com.baseflow.geolocator.location.LocationMapper;
 import com.baseflow.geolocator.location.LocationOptions;
 
+import io.flutter.plugin.common.EventChannel;
+
 public class GeolocatorLocationService extends Service {
   private static final String TAG = "FlutterGeolocator";
   private static final int ONGOING_NOTIFICATION_ID = 75415;
