@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
 
 import 'foreground_settings.dart';
@@ -85,7 +87,7 @@ class AndroidSettings extends LocationSettings {
         'timeInterval': intervalDuration?.inMilliseconds,
         'foregroundNotificationConfig': foregroundNotificationConfig?.toJson(),
         'useMSLAltitude': useMSLAltitude,
-        'iconColor': iconColor?.toString() ?? null
+        'iconColor': iconColor?.toString()
       });
   }
 }
