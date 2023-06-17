@@ -79,7 +79,7 @@ class ForegroundNotificationConfig {
       'notificationIcon': notificationIcon.toJson(),
       'enableWifiLock': enableWifiLock,
       'enableWakeLock': enableWakeLock,
-      'iconColor': iconColor?.toString()
+      'iconColor': iconColor?.value
     };
   }
 }

@@ -25,16 +25,16 @@ public class BackgroundNotification {
     private NotificationCompat.Builder builder;
 
     public BackgroundNotification(
-            @NonNull Context context,
-            @NonNull String channelId ,
-            @NonNull Integer notificationId,
-            ForegroundNotificationOptions options
+        @NonNull Context context,
+        @NonNull String channelId ,
+        @NonNull Integer notificationId,
+        ForegroundNotificationOptions options
     ) {
         this.context = context;
         this.notificationId = notificationId;
         this.channelId = channelId;
         builder = new NotificationCompat.Builder(context, channelId)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+            .setPriority(NotificationCompat.PRIORITY_HIGH);
         updateNotification(options, false);
     }
 
@@ -89,7 +89,7 @@ public class BackgroundNotification {
                 .setContentIntent(buildBringToFrontIntent())
                 .setOngoing(true)
                 .setSilent(true)
-                .setColor(options.getIconColor() != null ? options.getIconColor() : 0);
+                .setColor(options.getIconColor());
 
 
         if (notify) {

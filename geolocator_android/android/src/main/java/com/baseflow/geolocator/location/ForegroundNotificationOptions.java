@@ -18,7 +18,7 @@ public class ForegroundNotificationOptions {
     private final AndroidIconResource notificationIcon;
     private final boolean enableWifiLock;
     private final boolean enableWakeLock;
-    private final String iconColor;
+    private final Integer iconColor;
 
     public static ForegroundNotificationOptions parseArguments(@Nullable  Map<String, Object> arguments) {
     if (arguments == null) {
@@ -30,14 +30,14 @@ public class ForegroundNotificationOptions {
     final String notificationText = (String) arguments.get("notificationText");
     final Boolean enableWifiLock = (Boolean) arguments.get("enableWifiLock");
     final Boolean enableWakeLock = (Boolean) arguments.get("enableWakeLock");
-    final @Nullable String iconColor = (String) arguments.get("iconColor");
+    final @Nullable Integer iconColor = (Integer) arguments.get("iconColor");
     return new ForegroundNotificationOptions(
-            notificationTitle,
-            notificationText,
-            notificationIcon,
-            enableWifiLock,
-            enableWakeLock,
-            iconColor
+        notificationTitle,
+        notificationText,
+        notificationIcon,
+        enableWifiLock,
+        enableWakeLock,
+        iconColor
     );
   }
 
@@ -47,7 +47,7 @@ public class ForegroundNotificationOptions {
         @NonNull AndroidIconResource notificationIcon,
         boolean enableWifiLock,
         boolean enableWakeLock,
-        @Nullable String iconColor
+        @Nullable Integer iconColor
     ) {
         this.notificationTitle = notificationTitle;
         this.notificationText = notificationText;
@@ -80,11 +80,7 @@ public class ForegroundNotificationOptions {
         return enableWakeLock;
     }
 
-    @Nullable
-    public Integer getIconColor() {
-        if (iconColor == null) {
-            return null;
-        }
-        return Color.parseColor(iconColor);
+    public int getIconColor() {
+        return iconColor != null ? iconColor : 0;
     }
 }
