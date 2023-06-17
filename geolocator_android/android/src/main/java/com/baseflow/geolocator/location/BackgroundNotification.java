@@ -83,13 +83,14 @@ public class BackgroundNotification {
         }
 
         builder = builder
-                .setContentTitle(options.getNotificationTitle())
-                .setSmallIcon(iconId)
-                .setContentText(options.getNotificationText())
-                .setContentIntent(buildBringToFrontIntent())
-                .setOngoing(true)
-                .setSilent(true)
-                .setColor(options.getIconColor());
+            .setContentTitle(options.getNotificationTitle())
+            .setSmallIcon(iconId)
+            .setContentText(options.getNotificationText())
+            .setContentIntent(buildBringToFrontIntent())
+            .setOngoing(true)
+            .setSilent(true)
+            .setColor(options.getIconColor())
+            .setPriority(NotificationCompat.PRIORITY_HIGH);
 
 
         if (notify) {
